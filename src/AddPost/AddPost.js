@@ -4,6 +4,8 @@ import { uid } from "uid";
 import "./Post.css";
 import "react-toastify/dist/ReactToastify.css";
 import asynchandler from "./post";
+import Lottie from "react-lottie";
+import Form from "./Form.json";
 const initialState = {
   title: "",
   content: "",
@@ -24,14 +26,24 @@ const AddPost = () => {
       return toast.error("Please fill all the fields");
     }
 
-    await asynchandler(values).then((res) => {console.log(res)});
+    await asynchandler(values).then((res) => {
+      console.log(res);
+    });
+  };
+  const defaultOptions = {
+    loop: true,
+    autoplay: true, 
+    animationData: Form,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice'
+    }
   };
   return (
     <>
       <div class="containerevent">
         <div class="cardevent">
           <div class="card-image">
-            {/* <Lottie className="eventgif" animationData={backg}  loop={true} /> */}
+            <Lottie className="eventgif" options={defaultOptions} loop={true} />
           </div>
           <form class="card-form" onSubmit={handleSubmit}>
             <div class="input">
